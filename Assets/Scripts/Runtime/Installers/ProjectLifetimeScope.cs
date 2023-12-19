@@ -6,18 +6,25 @@ using VContainer.Unity;
 
 namespace ProjectName.Runtime.Installers
 {
-	public class MetaLifetimeScope : LifetimeScope
+	public class ProjectLifetimeScope : LifetimeScope
 	{
+		protected override void Awake()
+		{
+			IsRoot = true;
+			DontDestroyOnLoad(this);
+			base.Awake();
+		}
+
 		protected override void Configure(IContainerBuilder builder)
 		{
-			Debug.Log($"{nameof(MetaLifetimeScope)} Configure");
-			SceneManager.LoadScene(SceneConstants.Core);
+			Debug.Log($"{nameof(ProjectLifetimeScope)} Configure");
+			SceneManager.LoadScene(SceneConstants.Meta);
 		}
 
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
-			Debug.Log($"{nameof(MetaLifetimeScope)} Disposed");
+			Debug.Log($"{nameof(ProjectLifetimeScope)} Disposed");
 		}
 	}
 }

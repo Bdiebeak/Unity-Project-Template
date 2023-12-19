@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Meta.unity
     guid: da83c1aa208e4554f8a75acc4494c86b
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Core.unity
     guid: 374430902389f5f49a1f0981f5ce799e
   - enabled: 1
     path: Assets/Scenes/Empty.unity
