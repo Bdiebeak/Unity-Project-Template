@@ -8,7 +8,7 @@ namespace ProjectName.Editor.Configurator
 	public class ProjectConfigurator
 	{
 		private const string ProjectName = "_ProjectName";
-		
+
 		[MenuItem("Configurator/Get Folders")]
 		public static string[] GetFolders()
 		{
@@ -33,9 +33,11 @@ namespace ProjectName.Editor.Configurator
 					// Don't try to move directory into itself.
 					continue;
 				}
+
 				Directory.Move(folderPath, Path.Combine(projectFolderPath, folderName));
 				File.Delete($"{folderPath}.meta");
 			}
+
 			AssetDatabase.Refresh();
 		}
 

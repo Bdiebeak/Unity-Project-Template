@@ -3,8 +3,7 @@
     "rootNamespace": "ProjectName.Tests.EditMode",
     "references": [
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "Runtime"
+        "UnityEditor.TestRunner"
     ],
     "includePlatforms": [
         "Editor"
