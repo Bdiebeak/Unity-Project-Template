@@ -1,10 +1,10 @@
 {
-    "name": "PlayMode",
+    "name": "ProjectName.Tests.PlayMode",
     "rootNamespace": "ProjectName.Tests.PlayMode",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Runtime"
+        "ProjectName.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
