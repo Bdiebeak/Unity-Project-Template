@@ -1,10 +1,8 @@
-using ProjectName.Runtime.Infrastructure;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using VContainer;
 using VContainer.Unity;
 
-namespace ProjectName.Runtime.Installers
+namespace ProjectName.Runtime.DI
 {
 	public class ProjectLifetimeScope : LifetimeScope
 	{
@@ -17,8 +15,12 @@ namespace ProjectName.Runtime.Installers
 
 		protected override void Configure(IContainerBuilder builder)
 		{
+			// Here should be:
+			// 1) Initialization of global services which are used across project (LogService and etc.);
+			// 2) Initialization and starting of ProjectFlow;
+
 			Debug.Log($"{nameof(ProjectLifetimeScope)} Configure");
-			SceneManager.LoadScene(SceneConstants.Meta);
+			builder.RegisterEntryPoint<ProjectFlow>();
 		}
 
 		protected override void OnDestroy()
