@@ -2,7 +2,7 @@
     "name": "ProjectName.Runtime",
     "rootNamespace": "ProjectName.Runtime",
     "references": [
-        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
         "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
     "includePlatforms": [],
