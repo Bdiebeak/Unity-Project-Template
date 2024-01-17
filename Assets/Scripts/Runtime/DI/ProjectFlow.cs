@@ -1,19 +1,19 @@
-﻿using ProjectName.Runtime.Infrastructure;
-using UnityEngine.SceneManagement;
-using VContainer.Unity;
+﻿using System;
+using UnityEngine;
+using Zenject;
 
 namespace ProjectName.Runtime.DI
 {
-	public class ProjectFlow : IStartable
+	public class ProjectFlow : IInitializable, IDisposable
 	{
-		public async void Start()
+		public void Initialize()
 		{
-			// It can be async to wait some loading.
-			// Here should be:
-			// 1) Loading of some global data (configs and etc.);
-			// 2) Execution of some actions which are required to continue project flow (load next scene);
+			Debug.Log($"{nameof(ProjectFlow)}.{nameof(Initialize)}");
+		}
 
-			SceneManager.LoadScene(SceneConstants.Meta);
+		public void Dispose()
+		{
+			Debug.Log($"{nameof(ProjectFlow)}.{nameof(Dispose)}");
 		}
 	}
 }
