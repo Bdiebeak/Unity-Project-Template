@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace ProjectName.Runtime.DI
+namespace ProjectName.Runtime.Initialization
 {
 	public class CoreFlow : IInitializable, IDisposable
 	{

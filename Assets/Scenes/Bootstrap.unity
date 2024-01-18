@@ -136,10 +136,6 @@ PrefabInstance:
       value: BootstrapContext
       objectReference: {fileID: 0}
     - target: {fileID: 6864136105655951908, guid: bf767b17d9cba024aaa575726da20af1, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6864136105655951908, guid: bf767b17d9cba024aaa575726da20af1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -184,3 +180,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf767b17d9cba024aaa575726da20af1, type: 3}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 1294086328}

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace ProjectName.Runtime.DI
+namespace ProjectName.Runtime.Initialization
 {
 	public class MetaFlow : IInitializable, IDisposable
 	{
