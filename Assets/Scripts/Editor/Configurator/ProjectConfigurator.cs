@@ -1,48 +1,58 @@
 using System.IO;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace ProjectName.Editor.Configurator
+namespace UPT.Editor.Configurator
 {
 	public class ProjectConfigurator
 	{
-		private const string ProjectName = "_ProjectName";
+		private const string ProjectName = "ProjectName";
+		private const string NewName = "TestProject";
+		private const string Regex = @"(namespace((\s)+)((.)*)(ProjectName)(\s|(\.))+)";
 
-		[MenuItem("Configurator/Get Folders")]
-		public static string[] GetFolders()
+		[MenuItem("Configurator/Rename Project")]
+		public static void RenameProject()
 		{
-			return Directory.GetDirectories(Application.dataPath);
-		}
-
-		// TODO: move project files into separate folder
-		// - use prefix "_"
-		[MenuItem("Configurator/Separate Folders")]
-		public static void SeparateFolders()
-		{
-			string projectFolderPath = Path.Combine(Application.dataPath, ProjectName);
-			Directory.CreateDirectory(projectFolderPath);
-
-			// TODO: Move only selected paths into project's folder.
-			string[] folderPaths = GetFolders();
-			foreach (string folderPath in folderPaths)
+			// TODO: separate function
+			// Rename TestProject in .cs files.
+			string[] scriptFiles = Directory.GetFiles(Application.dataPath, "*.cs", SearchOption.AllDirectories);
+			foreach (string scriptFile in scriptFiles)
 			{
-				string folderName = folderPath.Split(Path.DirectorySeparatorChar).Last();
-				if (string.Equals(folderName, ProjectName))
+				// Skip scripts which are inside Plugins folder.
+				string fullPath = Path.GetFullPath(scriptFile);
+				if (fullPath.Contains("\\Plugins\\"))
 				{
-					// Don't try to move directory into itself.
 					continue;
 				}
 
-				Directory.Move(folderPath, Path.Combine(projectFolderPath, folderName));
-				File.Delete($"{folderPath}.meta");
+				// TODO: separate function
+				// Replace default TestProject with new one.
+				string text = File.ReadAllText(scriptFile);
+				if (text.Contains(ProjectName))
+				{
+					text = text.Replace(ProjectName, NewName);
+					File.WriteAllText(scriptFile, text);
+				}
+
+				Debug.Log(Path.GetFullPath(scriptFile));
 			}
 
-			AssetDatabase.Refresh();
-		}
+			// TODO: separate function
+			// Rename TestProject in .asmdef files.
+			string[] assemblyFiles = Directory.GetFiles(Application.dataPath, "*.asmdef", SearchOption.AllDirectories);
+			foreach (string assemblyFile in assemblyFiles)
+			{
+				// TODO: separate function
+				// Replace default TestProject with new one.
+				string text = File.ReadAllText(assemblyFile);
+				if (text.Contains(ProjectName))
+				{
+					text = text.Replace(ProjectName, NewName);
+					File.WriteAllText(assemblyFile, text);
+				}
 
-		// TODO: change all ProjectName
-		// - namespaces
-		// - assemblies
+				Debug.Log(Path.GetFileName(assemblyFile));
+			}
+		}
 	}
 }
