@@ -10,7 +10,7 @@ namespace ProjectName.Runtime.Initialization
 	{
 		public void Initialize()
 		{
-			// It can be async to wait some loading.
+			// It can be async to wait some logic.
 			// Here should be:
 			// 1) Loading of some global data (configs and etc.);
 			// 2) Execution of some actions which are required to continue project flow (load next scene);

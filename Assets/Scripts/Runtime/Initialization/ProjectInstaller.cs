@@ -6,6 +6,8 @@ namespace ProjectName.Runtime.Initialization
 	{
 		public override void InstallBindings()
 		{
+			// Binding some global project installers, flows and logic.
+			// It should be global part of application, which is used from different modules.
 			Container.BindInterfacesAndSelfTo<ProjectFlow>().AsSingle().NonLazy();
 		}
 	}
