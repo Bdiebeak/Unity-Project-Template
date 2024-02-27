@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace UPT.Editor.Configurator
 {
-	public class ProjectConfigurator
+	// TODO:
+	// 1. Change project name tool
+	// 2. Separate project folder tool
+	// 3. Create required folders tool
+	public class Configurator
 	{
 		private const string ProjectName = "ProjectName";
 		private const string NewName = "TestProject";
