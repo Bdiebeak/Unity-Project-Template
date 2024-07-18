@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ProjectName/Scenes/Bootstrap.unity
+    path: Assets/BdiebeakTemplate/Scenes/Bootstrap.unity
     guid: 90f006fc3bf95224eaef738417bb0e36
   - enabled: 1
-    path: Assets/ProjectName/Scenes/Meta.unity
+    path: Assets/BdiebeakTemplate/Scenes/Meta.unity
     guid: da83c1aa208e4554f8a75acc4494c86b
   - enabled: 1
-    path: Assets/ProjectName/Scenes/Core.unity
+    path: Assets/BdiebeakTemplate/Scenes/Core.unity
     guid: 374430902389f5f49a1f0981f5ce799e
   - enabled: 1
-    path: Assets/ProjectName/Scenes/Empty.unity
+    path: Assets/BdiebeakTemplate/Scenes/Empty.unity
     guid: d351fa5fb722d604bb26b1809d94fec7
   m_configObjects: {}
