@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,14 +7,19 @@ namespace BdiebeakTemplate.Code.Editor.Configurator
 {
 	public class ConfiguratorWindow : EditorWindow
 	{
-		private readonly ProjectRenamer _renamer = new();
+		private ProjectRenamer _renamer;
 
 		[MenuItem("Configurator/Window")]
-		public static void Open()
+		public static void ShowWindow()
 		{
 			ConfiguratorWindow window = GetWindow<ConfiguratorWindow>();
 			window.minSize = new Vector2(400, 150);
 			window.titleContent = new GUIContent("Configurator Window");
+		}
+
+		private void OnEnable()
+		{
+			_renamer = new ProjectRenamer();
 		}
 
 		private void CreateGUI()

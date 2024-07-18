@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -14,30 +15,29 @@ namespace BdiebeakTemplate.Code.Editor.Configurator
 		{
 			RenameDirectories(Application.dataPath);
 			RenameFiles(Path.Combine(Application.dataPath, newName));
-			File.Delete(Path.Combine(Application.dataPath, $"{currentName}.meta"));
-			if (shouldDestroySelf)
-			{
-				Directory.Delete(Path.Combine(Application.dataPath, newName, "Code", "Editor", "Configurator"), true);
-			}
+			CleanUpFiles();
 
 			AssetDatabase.Refresh();
 		}
 
 		private void RenameDirectories(string rootPath)
 		{
-			string[] directories = Directory.GetDirectories(rootPath, $"*{currentName}*", SearchOption.AllDirectories);
-			foreach (string directory in directories)
+			foreach (string directory in Directory.GetDirectories(rootPath, $"*{currentName}*", SearchOption.AllDirectories))
 			{
-				if (Directory.Exists(directory) == false)
+				try
 				{
-					continue;
-				}
+					if (Directory.Exists(directory) == false)
+					{
+						continue;
+					}
 
-				if (directory.Contains(currentName))
-				{
 					string newDirectoryPath = directory.Replace(currentName, newName);
 					Directory.Move(directory, newDirectoryPath);
 					RenameDirectories(newDirectoryPath);
+				}
+				catch (Exception ex)
+				{
+					Debug.LogError($"Error while renaming directory {directory}: {ex.Message}");
 				}
 			}
 		}
@@ -46,20 +46,45 @@ namespace BdiebeakTemplate.Code.Editor.Configurator
 		{
 			foreach (string filePath in Directory.GetFiles(rootPath, "*.*", SearchOption.AllDirectories))
 			{
-				string currentPath = filePath;
-				if (filePath.Contains(currentName))
+				try
 				{
-					currentPath = filePath.Replace(currentName, newName);
-					File.Move(filePath, currentPath);
-				}
+					string currentPath = filePath;
+					if (filePath.Contains(currentName))
+					{
+						currentPath = filePath.Replace(currentName, newName);
+						File.Move(filePath, currentPath);
+					}
 
-				string extension = Path.GetExtension(currentPath);
-				if (extension.Equals(".cs") || extension.Equals(".asmdef"))
-				{
-					string content = File.ReadAllText(currentPath);
-					content = content.Replace(currentName, newName);
-					File.WriteAllText(currentPath, content);
+					// Change names in file content - namespaces, etc.
+					string extension = Path.GetExtension(currentPath);
+					if (extension.Equals(".cs") || extension.Equals(".asmdef"))
+					{
+						string content = File.ReadAllText(currentPath);
+						content = content.Replace(currentName, newName);
+						File.WriteAllText(currentPath, content);
+					}
 				}
+				catch (Exception ex)
+				{
+					Debug.LogError($"Error while renaming file {filePath}: {ex.Message}");
+				}
+			}
+		}
+
+		private void CleanUpFiles()
+		{
+			try
+			{
+				File.Delete(Path.Combine(Application.dataPath, $"{currentName}.meta"));
+				if (shouldDestroySelf)
+				{
+					Directory.Delete(Path.Combine(Application.dataPath, newName, "Code", "Editor", "Configurator"),
+									 true);
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.LogError($"Error while cleaning up files: {ex.Message}");
 			}
 		}
 	}
