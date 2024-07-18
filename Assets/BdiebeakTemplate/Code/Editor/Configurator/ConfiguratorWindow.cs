@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -35,10 +34,9 @@ namespace BdiebeakTemplate.Code.Editor.Configurator
 		private void InitializeCurrentNameField(VisualElement root)
 		{
 			TextField currentNameField = new()
-										 {
-											 label = "Current Name",
-											 value = _renamer.currentName
-										 };
+			{
+				label = "Current Name", value = _renamer.currentName
+			};
 			currentNameField.RegisterCallback<ChangeEvent<string>>(OnCurrentNameChanged);
 			root.Add(currentNameField);
 		}
@@ -46,10 +44,9 @@ namespace BdiebeakTemplate.Code.Editor.Configurator
 		private void InitializeNewNameField(VisualElement root)
 		{
 			TextField newNameField = new()
-									 {
-										 label = "New Name",
-										 value = _renamer.newName
-									 };
+			{
+				label = "New Name", value = _renamer.newName
+			};
 			newNameField.RegisterCallback<ChangeEvent<string>>(OnNewNameChanged);
 			root.Add(newNameField);
 		}
@@ -57,11 +54,11 @@ namespace BdiebeakTemplate.Code.Editor.Configurator
 		private void InitializeShouldDestroySelfToggle(VisualElement root)
 		{
 			Toggle toggle = new()
-							{
-								label = "Remove extra",
-								tooltip = "Will remove this configurator and editor class, after configuration",
-								value = _renamer.shouldDestroySelf
-							};
+			{
+				label = "Remove extra",
+				tooltip = "Will remove this configurator and editor class, after configuration",
+				value = _renamer.shouldDestroySelf
+			};
 			toggle.RegisterCallback<ChangeEvent<bool>>(OnDestroyToggleChanged);
 			root.Add(toggle);
 		}
@@ -69,9 +66,9 @@ namespace BdiebeakTemplate.Code.Editor.Configurator
 		private void InitializeConfigureButton(VisualElement root)
 		{
 			Button button = new()
-							{
-								text = "Configure"
-							};
+			{
+				text = "Configure"
+			};
 			button.clicked += OnConfigureClicked;
 			root.Add(button);
 		}
